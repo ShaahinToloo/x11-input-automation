@@ -14,6 +14,9 @@ pressed_mouses_rn = []
 kb_listener = None
 ms_listener = None
 
+last_x = None
+last_y = None
+
 stop_event = threading.Event()
 start_time = time.perf_counter()
 
@@ -68,13 +71,25 @@ def on_click(x, y, button, pressed):
 
 
 def on_move(x, y):
+    global last_x, last_y
+
+    if last_x is None:
+        last_x, last_y = x, y
+        return
+
+    dx = x - last_x
+    dy = y - last_y
+
     t = time.perf_counter() - start_time
+
     mouse_events.append({
         "type": "mouse_move",
-        "x": x,
-        "y": y,
+        "dx": dx,
+        "dy": dy,
         "at": t
     })
+
+    last_x, last_y = x, y
 
 
 def on_scroll(x, y, dx, dy):
