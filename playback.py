@@ -5,10 +5,10 @@ import subprocess
 from pynput import keyboard
 
 
-with open("k_macro.json") as f:
+with open("macros/k_macro.json") as f:
     keyboard_events = json.load(f)
 
-with open("m_macro.json") as f:
+with open("macros/m_macro.json") as f:
     mouse_events = json.load(f)
 
 events = keyboard_events + mouse_events
