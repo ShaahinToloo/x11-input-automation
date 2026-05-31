@@ -11,6 +11,10 @@ mouse_events = []
 pressed_keys_rn = []
 pressed_mouses_rn = []
 
+kb_listener = None
+ms_listener = None
+
+stop_event = threading.Event()
 start_time = time.perf_counter()
 
 # ---------- KEYBOARD ----------
@@ -82,11 +86,9 @@ def on_scroll(x, y, dx, dy):
 
 # ---------- STOP CLEANLY ----------
 def stop_all():
-    print("Stopping...")
-
-    # stop both listeners
-    kb_listener.stop()
-    ms_listener.stop()
+    print("\nStopping...")
+    
+    stop_event.set()
 
     os.makedirs("macros", exist_ok=True)
     with open("macros/k_macro.json", "w") as f:
@@ -97,6 +99,8 @@ def stop_all():
 
     print("Saved files")
 
+    os._exit(0)
+
 
 # ---------- START LISTENERS ----------
 kb_listener = keyboard.Listener(on_press=on_press, on_release=on_release)
@@ -105,5 +109,4 @@ ms_listener = mouse.Listener(on_click=on_click, on_move=on_move, on_scroll=on_sc
 kb_listener.start()
 ms_listener.start()
 
-kb_listener.join()
-ms_listener.join()
+stop_event.wait()
