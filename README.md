@@ -23,7 +23,6 @@ sudo apt install xdotool
 Record:
 - Run recorder.py and do your route.
 - Press `Esc` to stop the recording.
-- Head back to terminal and press Ctrl-C to shutdown the threads
 
 Playback:
 - Run playback.py and after 3 seconds it starts the route.
