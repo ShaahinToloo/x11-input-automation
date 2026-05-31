@@ -109,4 +109,7 @@ ms_listener = mouse.Listener(on_click=on_click, on_move=on_move, on_scroll=on_sc
 kb_listener.start()
 ms_listener.start()
 
+kb_listener.join()
+ms_listener.join()
+
 stop_event.wait()
