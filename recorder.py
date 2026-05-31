@@ -17,6 +17,9 @@ ms_listener = None
 stop_event = threading.Event()
 start_time = time.perf_counter()
 
+time.sleep(float(input("Start After (seconds, float): ")))
+print("\nStarted!\n")
+
 # ---------- KEYBOARD ----------
 def on_press(key):
     if key == keyboard.Key.esc:

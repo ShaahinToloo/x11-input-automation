@@ -84,7 +84,7 @@ for event in events:
             subprocess.run(["xdotool", "mouseup", btn])
 
     # ---------- Mouse movement ----------
-    elif etype == "move":
+    elif etype == "mouse_move":
         subprocess.run([
             "xdotool",
             "mousemove",
@@ -93,7 +93,7 @@ for event in events:
         ])
 
     # ---------- Scroll ----------
-    elif etype == "scroll":
+    elif etype == "mouse_scroll":
         dy = event["y"]
 
         if dy > 0:
